@@ -39,7 +39,7 @@ class Queue{
             int x = front->data;
             Node* temp = front;
             front = front->next;
-            // free(temp);
+            free(temp);
             return x;
         }
         int size(){
@@ -59,15 +59,13 @@ class Queue{
                 cout<<"Queue is Empty";
             }
             else{
-                Node* temp = rear;
+                Node* temp = front;
                 while(temp!=NULL){
                     cout<<temp->data<<"->";
                     temp=temp->next;
                     if(temp==NULL){
-                        break;
-                    }
-                    else{
                         cout<<endl;
+                        break;
                     }
                 }
             }
