@@ -84,28 +84,38 @@ class PriorityQueue{
 
 int main(){
     PriorityQueue pq;
-    pq.enqueue(1,5);
-    pq.display(   );
-    pq.enqueue(1,4);
-    pq.display(   );
-    pq.enqueue(1,3);
-    pq.display(   );
-    pq.enqueue(1,7);
-    pq.display(   );
-    pq.enqueue(1,9);
-    pq.display(   );
-    pq.enqueue(1,7);
-    pq.display(   );
-    pq.enqueue(1,9);
-    pq.display(   );
-    pq.enqueue(1,1);
-    pq.display(   );
-    pq.dequeue();
-    pq.display();
-    pq.dequeue();
-    pq.display();
-    pq.dequeue();
-    pq.display();
-    pq.dequeue();
-    pq.display();
+    bool run = true;
+    int choice, ip,priority;
+    cout << "Priority Queue"<<endl;
+    while(run){
+        cout << "Operations:"<<endl;
+        cout <<"\t1.Enqueue\n\t2.Dequeue\n\t3.Display\n\t4.Size\n\t5.Exit\nEnter Your Choice: ";
+        cin >> choice;
+        switch(choice){
+            case 1:
+                cout << "Enter Element to Enqueue: ";
+                cin >> ip;
+                cout << "Enter it's Priority: ";
+                cin >> priority;
+                pq.enqueue(ip, priority);
+                break;
+            case 2:
+                ip = pq.dequeue();
+                cout << "Element Dequeued is : " << ip << endl;
+                break;
+            case 3:
+                pq.display();
+                break;
+            case 4:
+                ip = pq.size();
+                cout << "Size of Queue is : " << ip << endl;
+                break;
+            case 5:
+                run = false;
+                break;
+            default:
+                cout << "Invalid Operation" << endl;
+                break;
+        }
+    }
 }

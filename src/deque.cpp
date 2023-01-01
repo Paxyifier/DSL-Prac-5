@@ -106,50 +106,45 @@ class Deque{
 
 int main(){
     Deque q;
-    q.enqueueRear(1);
-    q.display( );
-    q.enqueueRear(2);
-    q.display( );
-    q.enqueueRear(3);
-    q.display( );
-    q.enqueueRear(4);
-    q.display( );
-    q.enqueueRear(5);
-    q.display( );
-    q.enqueueFront(6);
-    q.display( );
-    q.enqueueFront(7);
-    q.display( );
-    q.enqueueFront(8);
-    q.display( );
-    q.enqueueFront(9);
-    q.display( );
-    q.enqueueFront(10);
-    q.display( );
-    q.dequeueFront();
-    q.display( );
-    q.dequeueFront();
-    q.display( );
-    q.dequeueFront();
-    q.display( );
-    q.enqueueRear(7);
-    q.display( );
-    q.enqueueFront(8);
-    q.display( );
-    q.enqueueFront(9);
-    q.display();
-    q.dequeueRear();
-    q.display( );
-    q.dequeueRear();
-    q.display( );
-    q.dequeueRear();
-    q.display( );
-    q.dequeueFront();
-    q.display( );
-    q.dequeueFront();
-    q.display( );
-    q.dequeueFront();
-    q.display( );
-    q.dequeueFront();
-    q.display( );
+    bool run = true;
+    int choice, ip;
+    cout << "Double-ended Queue Implementation using Linked List"<<endl;
+    while(run){
+        cout << "Operations:"<<endl;
+        cout <<"\t1.EnqueueFront\n\t2.DequeueFront\n\t3.EnqueueRear\n\t4.DequeueRear\n\t5.Display\n\t6.Size\n\t7.Exit\nEnter Your Choice: ";
+        cin >> choice;
+        switch(choice){
+            case 1:
+                cout << "Enter Element to Enqueue: ";
+                cin >> ip;
+                q.enqueueFront(ip);
+                break;
+            case 2:
+                ip = q.dequeueFront();
+                cout << "Element Dequeued is : " << ip << endl;
+                break;
+            case 3:
+                cout << "Enter Element to Enqueue: ";
+                cin >> ip;
+                q.enqueueRear(ip);
+                break;
+            case 4:
+                ip = q.dequeueRear();
+                cout << "Element Dequeued is : " << ip << endl;
+                break;
+            case 5:
+                q.display();
+                break;
+            case 6:
+                ip = q.size();
+                cout << "Size of Queue is : " << ip << endl;
+                break;
+            case 7:
+                run = false;
+                break;
+            default:
+                cout << "Invalid Operation" << endl;
+                break;
+        }
+    }
 }

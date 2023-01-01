@@ -65,7 +65,7 @@ class CircularQueue{
             }
             Node* temp = front;
             do{
-                cout<<temp->data<<temp->isFront<<"->";
+                cout<<temp->data<<"->";
                 temp=temp->next;
             }while(!temp->isFront);
             cout << endl;
@@ -74,75 +74,36 @@ class CircularQueue{
 
 int main(){
     CircularQueue q;
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.enqueue(1);
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.enqueue(2);
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.enqueue(3);
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.enqueue(4);
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.enqueue(5);
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.enqueue(6);
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.enqueue(7);
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.enqueue(8);
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.enqueue(9);
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.enqueue(10);
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.dequeue();
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.dequeue();
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.dequeue();
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.enqueue(7);
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.enqueue(8);
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.enqueue(9);
-    q.display();
-    cout<<"Count: "<<q.size()<<endl;
-    q.dequeue();
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.dequeue();
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.dequeue();
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.dequeue();
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.dequeue();
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.dequeue();
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
-    q.dequeue();
-    q.display( );
-    cout<<"Count: "<<q.size()<<endl;
+    bool run = true;
+    int choice, ip;
+    cout << "Circular Queue Implementation using Linked List"<<endl;
+    while(run){
+        cout << "Operations:"<<endl;
+        cout <<"\t1.Enqueue\n\t2.Dequeue\n\t3.Display\n\t4.Size\n\t5.Exit\nEnter Your Choice: ";
+        cin >> choice;
+        switch(choice){
+            case 1:
+                cout << "Enter Element to Enqueue: ";
+                cin >> ip;
+                q.enqueue(ip);
+                break;
+            case 2:
+                ip = q.dequeue();
+                cout << "Element Dequeued is : " << ip << endl;
+                break;
+            case 3:
+                q.display();
+                break;
+            case 4:
+                ip = q.size();
+                cout << "Size of Queue is : " << ip << endl;
+                break;
+            case 5:
+                run = false;
+                break;
+            default:
+                cout << "Invalid Operation" << endl;
+                break;
+        }
+    }
 }
