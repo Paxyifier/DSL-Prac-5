@@ -1,108 +1,111 @@
 #include <iostream>
 using namespace std;
 const int MAX=10;
+class Node{
+    public:
+        int data;
+        int priority;
+        Node *next;
+        Node(int data){
+            this->data = data;
+        }
+        Node(int data, int priority){
+            this->data = data;
+            this->next = NULL;
+            this->priority = priority;
+        }
+};
 class PriorityQueue{
     private:
-        int front;
-        int rear;
-        int capacity;
-        int array[MAX];
+        Node* front=NULL;
+        Node* rear=NULL;
     public:
         PriorityQueue(){
-            front=-1;
-            rear=-1;
-            capacity=MAX;
         }
-        void enqueue(int x){
-            if(rear==capacity-1){
-                cout<<"Queue Overflow"<<endl;
+        void enqueue(int x, int priority){
+            Node* newNode = new Node(x, priority);
+            Node* temp = front;
+            if(front==NULL){
+                front = newNode;
+                rear = newNode;
                 return;
-            }
-            if (rear==front && rear == -1){
-                front=0;
-                rear=0;
-                array[rear]=x;
-            }
-            else{
-                rear++;
-                array[rear]=x;
+            } else if (front->priority>priority){
+                newNode->next = front;
+                front = newNode;
+                return;
+            } else {
+                while(temp->next!=NULL && temp->next->priority<priority){
+                    temp = temp->next;
+                }
+                newNode->next = temp->next;
+                temp->next = newNode;
             }
         }
         int dequeue(){
-            if(front==-1){
-                cout<<"Queue Underflow"<<endl;
+            if(front==NULL){
                 return -1;
+            } else {
+                int x = front->data;
+                Node* temp = front;
+                front = temp->next;
+                free(temp);
+                return x;
             }
-            int x=array[front];
-            front++;
-            // if(front==capacity-1){
-            //     front=0;
-            // }
-            return x;
         }
         int size(){
-            return rear-front+1;
+            if(front==NULL){
+                return 0;
+            }
+            Node* temp = front;
+            int count = 1;
+            while(temp->next!=NULL){
+                temp = temp->next;
+                count++;
+            }
+            return count;
         }
         void display(){
-            if(front==-1){
-                cout<<"Queue is Empty"<<endl;
+            if(front==NULL){
+                cout<<"Queue is Empty";
             }
             else{
-                cout<<"Queue is : ";
-                for(int i=front;i<=rear;i++){
-                    cout<<array[i]<<" ";
+                Node* temp = front;
+                while(temp!=NULL){
+                    cout<<temp->data<<","<<temp->priority<<"->";
+                    temp=temp->next;
+                    if(temp==NULL){
+                        cout<<endl;
+                        break;
+                    }
                 }
-                cout<<endl;
             }
         }
 };
 
 int main(){
-    PriorityQueue q;
-    q.enqueue(1);
-    q.display( );
-    q.enqueue(2);
-    q.display( );
-    q.enqueue(3);
-    q.display( );
-    q.enqueue(4);
-    q.display( );
-    q.enqueue(5);
-    q.display( );
-    q.enqueue(6);
-    q.display( );
-    q.enqueue(7);
-    q.display( );
-    q.enqueue(8);
-    q.display( );
-    q.enqueue(9);
-    q.display( );
-    q.enqueue(10);
-    q.display( );
-    q.dequeue();
-    q.display( );
-    q.dequeue();
-    q.display( );
-    q.dequeue();
-    q.display( );
-    q.enqueue(7);
-    q.display( );
-    q.enqueue(8);
-    q.display( );
-    q.enqueue(9);
-    q.display();
-    q.dequeue();
-    q.display( );
-    q.dequeue();
-    q.display( );
-    q.dequeue();
-    q.display( );
-    q.dequeue();
-    q.display( );
-    q.dequeue();
-    q.display( );
-    q.dequeue();
-    q.display( );
-    q.dequeue();
-    q.display( );
+    PriorityQueue pq;
+    pq.enqueue(1,5);
+    pq.display(   );
+    pq.enqueue(1,4);
+    pq.display(   );
+    pq.enqueue(1,3);
+    pq.display(   );
+    pq.enqueue(1,7);
+    pq.display(   );
+    pq.enqueue(1,9);
+    pq.display(   );
+    pq.enqueue(1,7);
+    pq.display(   );
+    pq.enqueue(1,9);
+    pq.display(   );
+    pq.enqueue(1,1);
+    pq.display(   );
+    pq.dequeue();
+    pq.display();
+    pq.dequeue();
+    pq.display();
+    pq.dequeue();
+    pq.display();
+    pq.dequeue();
+    pq.display();
 }
