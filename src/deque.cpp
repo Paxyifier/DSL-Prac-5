@@ -66,7 +66,7 @@ class Deque{
             if(front==NULL){
                 return -1;
             }
-            int x = front->data;
+            int x = rear->data;
             Node* temp = rear;
             rear = rear->prev;
             rear->next = NULL;
